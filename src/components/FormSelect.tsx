@@ -2,7 +2,7 @@ import {Option} from "../types/form.ts";
 import {FieldProps} from "../types/components.ts";
 
 type SelectProps<T, K extends keyof T> = FieldProps<T, K> & {
-    options: Option[]
+    options: readonly Option[]
 }
 
 const FormSelect = <T, K extends keyof T>({

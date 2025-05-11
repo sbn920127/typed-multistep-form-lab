@@ -1,4 +1,5 @@
 import {GenderValue} from "../constants/genderOptions.ts";
+import {ThemeValue} from "../constants/themeOptions.ts";
 
 export type BasicInfo = {
     email: string
@@ -14,7 +15,7 @@ export type ProfileInfo = {
 
 export type Preferences = {
     newsletter: boolean
-    theme: string
+    theme: ThemeValue
 }
 
 export type FormValues  = BasicInfo & ProfileInfo & Preferences
