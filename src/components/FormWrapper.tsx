@@ -34,6 +34,7 @@ const FormWrapper = () => {
         setErrors((prev) => ({...prev, [key]: undefined}))
     }
 
+
     const next = () => {
         const currentSchema = schemaMap[step];
         const stepKeys = Object.keys(currentSchema) as (keyof FormValues)[];
