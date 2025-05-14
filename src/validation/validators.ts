@@ -1,25 +1,25 @@
-type Validator<T> = (value: T[keyof T], allValues: T) => string | undefined
-
-export type ValidationSchema<T> = {
-    [K in keyof T]?: Validator<T>[]
+import { Validator } from './types'
+import { FormValues } from '../types/form'
+export function required<T>(): Validator<Partial<T>> {
+    return (value) => value === '' || value === undefined ? '必填' : undefined
 }
 
-export function validate<T>(values: T, schema: ValidationSchema<T> ): Partial<Record<keyof T, string>> {
-    const errors: Partial<Record<keyof T, string>> = {}
-
-    for (const key in schema) {
-        const rules = schema[key]
-        const value = values[key as keyof T]
-        if (!rules) continue
-
-        for (const rule of rules) {
-            const error = rule(value, values)
-            if (error) {
-                errors[key as keyof T] = error
-                break // 一欄只顯示一個錯誤
-            }
+export function emailFormat<T>(): Validator<Partial<T>> {
+    return (value) => {
+        if (value !== undefined && value !== null) {
+            return /.+@.+/.test(value.toString()) ? undefined : '信箱格式錯誤'
         }
     }
+}
 
-    return errors
+export function minLength<T>(min: number): Validator<Partial<T>> {
+    return (value) => {
+        if (value !== undefined && value !== null) {
+            return  value.toString().length >= min ? undefined : `至少 ${min} 字`;
+        }
+    }
+}
+
+export function matchField<K extends keyof FormValues>(key: K): Validator<Partial<FormValues>> {
+    return (value, allValues) => value === allValues[key] ? undefined : '兩次輸入不一致'
 }

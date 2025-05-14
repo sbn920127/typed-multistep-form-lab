@@ -1,7 +1,7 @@
-import {FormStepProps, FormValues, Preferences} from "../types/form.ts";
-import FormCheckbox from "./FormCheckbox.tsx";
-import FormSelect from "./FormSelect.tsx";
-import {themeOptions} from "../constants/themeOptions.ts";
+import {FormStepProps, FormValues, Preferences} from "../../types/form.ts";
+import FormCheckbox from "../FormCheckbox";
+import FormSelect from "../FormSelect";
+import {themeOptions} from "../../constants/themeOptions.ts";
 
 const Step3Preferences = ({values, errors, onChange} : FormStepProps<Preferences> ) => {
     return (

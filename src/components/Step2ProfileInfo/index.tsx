@@ -1,7 +1,7 @@
-import {FormStepProps, FormValues, ProfileInfo} from "../types/form.ts";
-import FormInput from "./FormInput.tsx";
-import FormRadioGroup from "./FormRadioGroup.tsx";
-import {genderOptions} from "../constants/genderOptions.ts";
+import {FormStepProps, FormValues, ProfileInfo} from "../../types/form.ts";
+import FormInput from "../FormInput";
+import FormRadioGroup from "../FormRadioGroup";
+import {genderOptions} from "../../constants/genderOptions.ts";
 
 
 const Step2ProfileInfo = ({values, errors, onChange}: FormStepProps<ProfileInfo>) => {

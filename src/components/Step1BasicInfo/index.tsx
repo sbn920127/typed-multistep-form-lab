@@ -1,5 +1,5 @@
-import {BasicInfo, FormStepProps, FormValues} from '../types/form'
-import FormInput from "./FormInput.tsx";
+import {BasicInfo, FormStepProps, FormValues} from '../../types/form'
+import FormInput from "../FormInput";
 
 const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicInfo>) => {
     return (

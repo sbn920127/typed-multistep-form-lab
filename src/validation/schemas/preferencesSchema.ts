@@ -1,4 +1,4 @@
-import {ValidationSchema} from "../../validation/validators.ts";
+import {ValidationSchema} from "../types.ts";
 import {Preferences} from "../../types/form.ts";
 
 export const preferencesSchema: ValidationSchema<Preferences> = {

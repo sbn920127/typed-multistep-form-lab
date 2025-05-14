@@ -1,4 +1,4 @@
-import {FieldProps} from "../types/components.ts";
+import {FieldProps} from "../../types/components.ts";
 
 const FormCheckbox = <T, K extends keyof T>({
     label,

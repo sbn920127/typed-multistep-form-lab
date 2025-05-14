@@ -1,4 +1,4 @@
-import {FieldProps} from "../types/components.ts";
+import {FieldProps} from "../../types/components.ts";
 
 const FormInput = <T, K extends keyof T>({ label, name, value, error, type = 'text', onChange }: FieldProps<T, K>) => {
     return (

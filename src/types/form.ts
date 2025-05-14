@@ -24,8 +24,6 @@ export type FormErrors<T> = {
     [key in keyof T]?: string
 }
 
-export type Step = 1 | 2 | 3
-
 export type FormStepProps<T> = {
     values: T
     errors: FormErrors<T>
