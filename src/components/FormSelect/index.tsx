@@ -1,5 +1,5 @@
-import {Option} from "../../types/form.ts";
-import {FieldProps} from "../../types/components.ts";
+import { Option } from "../../types/form.ts";
+import { FieldProps } from "../../types/components.ts";
 
 type SelectProps<T, K extends keyof T> = FieldProps<T, K> & {
     options: readonly Option[]

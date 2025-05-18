@@ -17,7 +17,9 @@ export const FormRadioGroup = <T, K extends keyof T>({
         <fieldset style={{border: 'none', marginBottom: '1rem'}}>
             <legend>{label}</legend>
             {options.map((option) => {
-                console.log(value, option.value);
+                const handleChange = () => {
+                    onChange(name, option.value as T[K])
+                }
                 return (
                     <label key={option.value}>
                         <input
@@ -25,7 +27,7 @@ export const FormRadioGroup = <T, K extends keyof T>({
                             name={String(name)}
                             value={option.value}
                             checked={value === option.value}
-                            onChange={() => onChange(name, option.value as T[K])}
+                            onChange={handleChange}
                         />
                         {option.label}
                     </label>

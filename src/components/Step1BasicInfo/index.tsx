@@ -1,7 +1,7 @@
 import {BasicInfo, FormStepProps, FormValues} from '../../types/form'
-import FormInput from "../FormInput";
+import { FormInput } from "../FormInput";
 
-const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicInfo>) => {
+export const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicInfo>) => {
     return (
         <div>
             <h2>基本資料</h2>
@@ -11,5 +11,3 @@ const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicInfo>) =>
         </div>
     );
 };
-
-export default Step1BasicInfo;

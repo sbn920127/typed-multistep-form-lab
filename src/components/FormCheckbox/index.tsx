@@ -1,6 +1,6 @@
 import {FieldProps} from "../../types/components.ts";
 
-const FormCheckbox = <T, K extends keyof T>({
+export const FormCheckbox = <T, K extends keyof T>({
     label,
     name,
     value,
@@ -21,5 +21,3 @@ const FormCheckbox = <T, K extends keyof T>({
         </div>
     )
 }
-
-export default FormCheckbox

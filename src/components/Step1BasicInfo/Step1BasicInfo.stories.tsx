@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Step2ProfileInfoStory } from "./Step2ProfileInfo.stories-wrapper.tsx";
+import { Step1BasicInfoStory } from "./Step1BasicInfo.stories-wrapper.tsx";
 
 const meta: Meta = {
-    title: 'Steps/Step2ProfileInfo',
-    component: Step2ProfileInfoStory
+    title: 'Steps/Step1BasicInfo',
+    component: Step1BasicInfoStory,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Step2ProfileInfoStory>;
+type Story = StoryObj<typeof Step1BasicInfoStory>;
 
 export const Default: Story = {
     args: {
         values: {
-            fullName: '',
-            birthday: '',
-            gender: 1,
+            email: '',
+            password: '',
+            confirmPassword: '',
         },
         errors: {},
         onChange: (key, value) => {

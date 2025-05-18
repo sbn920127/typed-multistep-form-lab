@@ -6,8 +6,10 @@ type MockForm = {
     gender: string;
 }
 
-type StoryFieldProps = FieldProps<MockForm 'gender'> ;
+type StoryFieldProps = FieldProps<MockForm, 'gender'> & {
+    options: readonly Option[];
+};
 
-export const FormInputStory = (props: StoryFieldProps) => {
-    return <FormInput<MockForm, 'gender'> {...props} />
+export const FormRadioGroupStory = (props: StoryFieldProps) => {
+    return <FormRadioGroup<MockForm, 'gender'> {...props} />
 }

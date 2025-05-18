@@ -22,14 +22,3 @@ export const Default: Story = {
     },
 };
 
-export const WithLabel: Story = {
-    args: {
-        label: 'Email',
-        name: 'email',
-        value: '',
-        error: '',
-        type: 'text',
-        onChange: (value) => console.log(value),
-    },
-}
-
