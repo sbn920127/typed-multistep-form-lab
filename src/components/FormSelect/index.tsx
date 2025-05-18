@@ -5,14 +5,14 @@ type SelectProps<T, K extends keyof T> = FieldProps<T, K> & {
     options: readonly Option[]
 }
 
-const FormSelect = <T, K extends keyof T>({
-    label,
-    name,
-    value,
-    options,
-    onChange,
-    error
-}: SelectProps<T, K>) => {
+export const FormSelect = <T, K extends keyof T>({
+                                                     label,
+                                                     name,
+                                                     value,
+                                                     options,
+                                                     onChange,
+                                                     error
+                                                 }: SelectProps<T, K>) => {
     return (
         <div>
             <label>
@@ -31,9 +31,7 @@ const FormSelect = <T, K extends keyof T>({
                     })}
                 </select>
             </label>
-            {error && <span style={{ color: 'red' }}>{error}</span>}
+            {error && <span style={{color: 'red'}}>{error}</span>}
         </div>
     )
 }
-
-export default FormSelect

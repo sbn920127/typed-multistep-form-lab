@@ -5,7 +5,7 @@ type RadioGroupProps<T, K extends keyof T> = FieldProps<T, K> & {
     options: readonly Option[]
 }
 
-const FormRadioGroup = <T, K extends keyof T>({
+export const FormRadioGroup = <T, K extends keyof T>({
     label,
     name,
     value,
@@ -35,5 +35,3 @@ const FormRadioGroup = <T, K extends keyof T>({
         </fieldset>
     )
 }
-
-export default FormRadioGroup

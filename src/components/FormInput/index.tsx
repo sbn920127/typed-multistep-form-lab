@@ -1,6 +1,6 @@
 import {FieldProps} from "../../types/components.ts";
 
-const FormInput = <T, K extends keyof T>({ label, name, value, error, type = 'text', onChange }: FieldProps<T, K>) => {
+export const FormInput = <T, K extends keyof T>({ label, name, value, error, type = 'text', onChange }: FieldProps<T, K>) => {
     return (
         <div>
             <label>
@@ -15,5 +15,3 @@ const FormInput = <T, K extends keyof T>({ label, name, value, error, type = 'te
         </div>
     )
 }
-
-export default FormInput
