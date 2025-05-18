@@ -1,21 +1,21 @@
-import {useState} from "react";
-import {FormValues, FormErrors} from "../../types/form.ts";
-import Step1BasicInfo from "../Step1BasicInfo";
-import Step2ProfileInfo from "../Step2ProfileInfo";
-import Step3Preferences from "../Step3Preferences";
-import {pick} from "../../utils/pick.ts";
-import {ToSnakeCaseKeys} from "../../utils/typeHelpers.ts";
-import {submitForm} from "../../api/submitForm.ts";
-import {mapApiFieldErrors} from "../../utils/mapFieldErrors.ts";
-import {toSnakeCaseKeys} from "../../utils/toSnakeCareKeys.ts";
-import {fieldLabelMap} from "../../constants/fieldLabelMap.ts";
-import {Step} from "./types.ts";
-import {schemaMap} from "./formSchemaMap.ts";
-import {formDefaultValues} from "./formDefaultValues.ts";
-import {validate} from "../../validation";
+import { useState } from "react";
+import { FormValues, FormErrors } from "../../types/form.ts";
+import { Step1BasicInfo } from "../Step1BasicInfo";
+import { Step2ProfileInfo } from "../Step2ProfileInfo";
+import { Step3Preferences } from "../Step3Preferences";
+import { pick } from "../../utils/pick.ts";
+import { ToSnakeCaseKeys } from "../../utils/typeHelpers.ts";
+import { submitForm } from "../../api/submitForm.ts";
+import { mapApiFieldErrors } from "../../utils/mapFieldErrors.ts";
+import { toSnakeCaseKeys } from "../../utils/toSnakeCareKeys.ts";
+import { fieldLabelMap } from "../../constants/fieldLabelMap.ts";
+import { Step } from "./types.ts";
+import { schemaMap } from "./formSchemaMap.ts";
+import { formDefaultValues } from "./formDefaultValues.ts";
+import { validate } from "../../validation";
 
 
-const FormWrapper = () => {
+export const FormWrapper = () => {
     const [step, setStep] = useState<Step>(1);
     const [formData, setFormData] = useState<FormValues>(formDefaultValues);
     const [errors, setErrors] = useState<FormErrors<FormValues>>({});
@@ -26,11 +26,11 @@ const FormWrapper = () => {
     }
 
 
-    const handleNext  = async () => {
+    const handleNext = async () => {
         const currentSchema = schemaMap[step];
         const stepKeys = Object.keys(currentSchema) as (keyof FormValues)[];
         const stepValues = pick(formData, stepKeys);
-        const stepErrors = validate(stepValues,currentSchema);
+        const stepErrors = validate(stepValues, currentSchema);
 
         if (Object.keys(stepErrors).length > 0) {
             setErrors((prev) => ({...prev, ...stepErrors}));
@@ -112,12 +112,10 @@ const FormWrapper = () => {
 
             <div style={{marginTop: '1rem'}}>
                 {step > 1 && <button onClick={back}>上一步</button>}
-                {step < 3 && <button onClick={handleNext }>下一步</button>}
+                {step < 3 && <button onClick={handleNext}>下一步</button>}
                 {step === 3 && <button onClick={handleSubmit}>送出</button>}
             </div>
         </div>
     )
 };
-
-export default FormWrapper;
 
