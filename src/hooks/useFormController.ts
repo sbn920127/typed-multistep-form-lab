@@ -9,9 +9,10 @@ import { toSnakeCaseKeys } from "../utils/toSnakeCareKeys.ts";
 import { ToSnakeCaseKeys } from "../utils/typeHelpers.ts";
 import { submitForm } from "../api/submitForm.ts";
 import { mapApiFieldErrors } from "../utils/mapFieldErrors.ts";
+import { Step } from "../components/FormWrapper/types.ts";
 
 export const useFormController = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState<Step>(1);
     const [formData, setFormData] = useState<FormValues>(formDefaultValues);
     const [errors, setErrors] = useState<FormErrors<FormValues>>({});
 

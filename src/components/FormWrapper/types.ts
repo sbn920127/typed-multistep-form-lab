@@ -1,1 +1,3 @@
-export type Step = 1 | 2 | 3
+import { formSteps } from "../../constants/formSteps.ts";
+
+export type Step = typeof formSteps[number]['id'];
