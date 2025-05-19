@@ -1,5 +1,5 @@
 import React from "react";
-import { BasicInfo, FormStepProps, FormValues, Preferences, ProfileInfo } from "../types/form.ts";
+import { BasicInfo, FormStepProps, Preferences, ProfileInfo } from "../types/form.ts";
 import { Step1BasicInfo } from "../components/Step1BasicInfo";
 import { Step2ProfileInfo } from "../components/Step2ProfileInfo";
 import { Step3Preferences } from "../components/Step3Preferences";
