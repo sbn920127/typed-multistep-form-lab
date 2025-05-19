@@ -1,4 +1,4 @@
-import FormWrapper from "./components/Index.tsx";
+import { FormWrapper } from "./components/FormWrapper";
 
 function App() {
 

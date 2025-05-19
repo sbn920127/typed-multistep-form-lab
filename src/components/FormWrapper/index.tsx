@@ -13,12 +13,17 @@ import { Step } from "./types.ts";
 import { schemaMap } from "./formSchemaMap.ts";
 import { formDefaultValues } from "./formDefaultValues.ts";
 import { validate } from "../../validation";
+import { formSteps } from "../../constants/formSteps.ts";
 
 
 export const FormWrapper = () => {
     const [step, setStep] = useState<Step>(1);
     const [formData, setFormData] = useState<FormValues>(formDefaultValues);
     const [errors, setErrors] = useState<FormErrors<FormValues>>({});
+
+    const currentStep = formSteps.find(s => s.id === step)!;
+    const StepComponent  = currentStep.component;
+
 
     const updateField = <K extends keyof FormValues>(key: K, value: FormValues[K]): void => {
         setFormData((prev) => ({...prev, [key]: value}))
@@ -91,25 +96,7 @@ export const FormWrapper = () => {
                     </div>
                 )
             }
-            {step === 1 && (
-                <Step1BasicInfo
-                    values={formData}
-                    errors={errors}
-                    onChange={updateField}/>
-            )}
-            {step === 2 && (
-                <Step2ProfileInfo
-                    values={formData}
-                    errors={errors}
-                    onChange={updateField}/>
-            )}
-            {step === 3 && (
-                <Step3Preferences
-                    values={formData}
-                    errors={errors}
-                    onChange={updateField}/>
-            )}
-
+            <StepComponent values={formData} errors={errors} onChange={updateField} />
             <div style={{marginTop: '1rem'}}>
                 {step > 1 && <button onClick={back}>上一步</button>}
                 {step < 3 && <button onClick={handleNext}>下一步</button>}
