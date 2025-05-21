@@ -1,16 +1,35 @@
-import { FormStepProps, FormValues, Preferences } from "../../types/form.ts";
-import { FormCheckbox } from "../FormCheckbox";
-import { FormSelect } from "../FormSelect";
+import { FieldConfig, FormStepProps, Preferences } from "../../types/form.ts";
 import { themeOptions } from "../../constants/themeOptions.ts";
+import { FieldRenderer } from "../FieldRenderer";
+
+const fields: FieldConfig<Preferences>[] = [
+    {
+        key: 'newsletter',
+        label: '訂閱電子報',
+        component: 'checkbox',
+    },
+    {
+        key: 'theme',
+        label: '主題',
+        component: 'select',
+        options: themeOptions,
+    },
+]
 
 export const Step3Preferences = ({values, errors, onChange}: FormStepProps<Preferences>) => {
     return (
         <div>
             <h2>偏好設定</h2>
-            <FormCheckbox<FormValues, 'newsletter'> label={'訂閱電子報'} name={'newsletter'} value={values.newsletter}
-                                                    error={errors.newsletter} onChange={onChange}/>
-            <FormSelect<FormValues, 'theme'> label={'主題'} name={'theme'} value={values.theme} error={errors.theme}
-                                             options={themeOptions} onChange={onChange}/>
+            {
+                fields.map((field) => (
+                    <FieldRenderer key={field.key as string}
+                                   field={field}
+                                   value={values[field.key]}
+                                   error={errors[field.key]}
+                                   onChange={onChange}
+                    />
+                ))
+            }
         </div>
     );
 };

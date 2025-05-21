@@ -1,13 +1,41 @@
-import {BasicInfo, FormStepProps, FormValues} from '../../types/form'
-import { FormInput } from "../FormInput";
+import { BasicInfo, FieldConfig, FormStepProps } from '../../types/form'
+import { FieldRenderer } from "../FieldRenderer";
+
+const fields: FieldConfig<BasicInfo>[] = [
+    {
+        key: 'email',
+        label: 'Email',
+        type: 'email',
+        component: 'input',
+    },
+    {
+        key: 'password',
+        label: '密碼',
+        type: 'password',
+        component: 'input',
+    },
+    {
+        key: 'confirmPassword',
+        label: '確認密碼',
+        type: 'password',
+        component: 'input',
+    },
+]
 
 export const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicInfo>) => {
     return (
-        <div>
+        <>
             <h2>基本資料</h2>
-            <FormInput<FormValues, 'email'> label={"Email"} name={'email'} value={values.email} error={errors.email} type={'email'} onChange={onChange} />
-            <FormInput<FormValues, 'password'> label={'密碼'} name={'password'} value={values.password} error={errors.password} type={'password'} onChange={onChange} />
-            <FormInput<FormValues, 'confirmPassword'> label={'確認密碼'} name={'confirmPassword'} value={values.confirmPassword} error={errors.confirmPassword} type={'password'} onChange={onChange} />
-        </div>
+            {
+                fields.map(field => (
+                    <FieldRenderer key={field.key as string}
+                                   field={field}
+                                   value={values[field.key]}
+                                   error={errors[field.key]}
+                                   onChange={onChange}
+                    />
+                ))
+            }
+        </>
     );
 };

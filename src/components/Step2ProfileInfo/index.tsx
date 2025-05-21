@@ -1,21 +1,42 @@
-import { FormStepProps, FormValues, ProfileInfo } from "../../types/form.ts";
-import { FormInput } from "../FormInput";
-import { FormRadioGroup } from "../FormRadioGroup";
+import { FieldConfig, FormStepProps, ProfileInfo } from "../../types/form.ts";
 import { genderOptions } from "../../constants/genderOptions.ts";
+import { FieldRenderer } from "../FieldRenderer";
+
+const fields: FieldConfig<ProfileInfo>[] = [
+    {
+        key: 'fullName',
+        label: '姓名',
+        component: 'input',
+        type: 'text',
+    },
+    {
+        key: 'birthday',
+        label: '生日',
+        component: 'input',
+        type: 'date',
+    },
+    {
+        key: 'gender',
+        label: '性別',
+        component: 'radio',
+        options: genderOptions,
+    }
+]
 
 
 export const Step2ProfileInfo = ({values, errors, onChange}: FormStepProps<ProfileInfo>) => {
     return (
         <div>
             <h2>個人資料</h2>
-            <FormInput<FormValues, 'fullName'> label={'姓名'} name={'fullName'} value={values.fullName}
-                                               error={errors.fullName}
-                                               onChange={onChange}/>
-            <FormInput<FormValues, 'birthday'> label={'生日'} name={'birthday'} value={values.birthday}
-                                               error={errors.birthday} type={'date'}
-                                               onChange={onChange}/>
-            <FormRadioGroup<FormValues, 'gender'> label={'性別'} name={'gender'} value={values.gender}
-                                                  error={errors.gender} options={genderOptions} onChange={onChange}/>
+            {fields.map((field) => (
+                <FieldRenderer
+                    key={field.key as string}
+                    field={field}
+                    value={values[field.key]}
+                    error={errors[field.key]}
+                    onChange={onChange}
+                />
+            ))}
         </div>
     );
 };

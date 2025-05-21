@@ -32,6 +32,14 @@ export type FormStepProps<T> = {
 
 export type Option = {label: string; value: string | number}
 
+export type FieldConfig<T> = {
+    key: keyof T;
+    label: string;
+    component: 'input' | 'select' | 'checkbox'| 'radio';
+    type?: string;
+    options?: Option[];
+}
+
 
 
 
