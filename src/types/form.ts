@@ -1,5 +1,6 @@
 import {GenderValue} from "../constants/genderOptions.ts";
 import {ThemeValue} from "../constants/themeOptions.ts";
+import { validate } from "../validation/types.ts";
 
 export type BasicInfo = {
     email: string
@@ -9,6 +10,7 @@ export type BasicInfo = {
 
 export type ProfileInfo = {
     fullName: string
+    nickname: string
     birthday: string
     gender: GenderValue
 }
@@ -38,6 +40,8 @@ export type FieldConfig<T> = {
     component: 'input' | 'select' | 'checkbox'| 'radio';
     type?: string;
     options?: Option[];
+    defaultValue?: T[keyof T];
+    validators?: validate<T>
 }
 
 

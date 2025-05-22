@@ -10,6 +10,12 @@ const fields: FieldConfig<ProfileInfo>[] = [
         type: 'text',
     },
     {
+        key: 'nickname',
+        label: '暱稱',
+        component: 'input',
+        type: 'text',
+    },
+    {
         key: 'birthday',
         label: '生日',
         component: 'input',
