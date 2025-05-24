@@ -1,7 +1,8 @@
-import { BasicInfo, FieldConfig, Preferences, ProfileInfo } from "../types/form.ts";
+import { BasicInfo, Preferences, ProfileInfo } from "../types/form.ts";
 import { themeOptions } from "./themeOptions.ts";
 import { genderOptions } from "./genderOptions.ts";
 import { emailFormat, matchField, minLength, required } from "../validation";
+import { FieldConfig } from "../types/fields.ts";
 
 export const basicInfoFields: FieldConfig<BasicInfo>[] = [
     { key: "email", label: "Email", component: "input", type: "email", defaultValue: "", validators: [required(), emailFormat()] },

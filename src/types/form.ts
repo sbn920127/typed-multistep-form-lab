@@ -1,6 +1,6 @@
 import {GenderValue} from "../constants/genderOptions.ts";
 import {ThemeValue} from "../constants/themeOptions.ts";
-import { validate } from "../validation/types.ts";
+import { formSteps } from "../constants/formSteps.ts";
 
 export type BasicInfo = {
     email: string
@@ -32,17 +32,7 @@ export type FormStepProps<T> = {
     onChange: <K extends keyof T>(field: keyof T, value: T[K]) => void
 }
 
-export type Option = {label: string; value: string | number}
-
-export type FieldConfig<T> = {
-    key: keyof T;
-    label: string;
-    component: 'input' | 'select' | 'checkbox'| 'radio';
-    type?: string;
-    options?: Option[];
-    defaultValue?: T[keyof T];
-    validators?: validate<T>
-}
+export type Step = typeof formSteps[number]['id'];
 
 
 
