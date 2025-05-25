@@ -1,6 +1,8 @@
-import { FieldConfig, FormStepProps, ProfileInfo } from "../../types/form.ts";
+import { FormStepProps, ProfileInfo } from "../../types/form.ts";
 import { genderOptions } from "../../constants/genderOptions.ts";
 import { FieldRenderer } from "../FieldRenderer";
+import { militaryServiceOptions } from "../../constants/militaryServiceOptions.ts";
+import { FieldConfig } from "../../types/fields.ts";
 
 const fields: FieldConfig<ProfileInfo>[] = [
     {
@@ -26,7 +28,15 @@ const fields: FieldConfig<ProfileInfo>[] = [
         label: '性別',
         component: 'radio',
         options: genderOptions,
-    }
+    },
+    {
+        key: "militaryService",
+        label: "兵役狀況",
+        component: "select",
+        defaultValue: "",
+        options: militaryServiceOptions,
+        visible: (values: ProfileInfo) => values.gender === genderOptions[0].value, // ✅ 只有男生時顯示
+    },
 ]
 
 
@@ -41,6 +51,7 @@ export const Step2ProfileInfo = ({values, errors, onChange}: FormStepProps<Profi
                     value={values[field.key]}
                     error={errors[field.key]}
                     onChange={onChange}
+                    values={values}
                 />
             ))}
         </div>

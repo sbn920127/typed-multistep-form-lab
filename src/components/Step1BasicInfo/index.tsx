@@ -1,5 +1,6 @@
-import { BasicInfo, FieldConfig, FormStepProps } from '../../types/form'
+import { BasicInfo, FormStepProps } from '../../types/form'
 import { FieldRenderer } from "../FieldRenderer";
+import { FieldConfig } from "../../types/fields.ts";
 
 const fields: FieldConfig<BasicInfo>[] = [
     {
@@ -33,6 +34,7 @@ export const Step1BasicInfo = ({values, errors, onChange}: FormStepProps<BasicIn
                                    value={values[field.key]}
                                    error={errors[field.key]}
                                    onChange={onChange}
+                                   values={values}
                     />
                 ))
             }

@@ -24,7 +24,6 @@ export const FormWrapper = () => {
                         表單有錯誤，請檢查下列欄位：
                         <ul>
                             {Object.entries(errors).map(([key, msg]) => (
-
                                 <li key={key}>{fieldLabelMap[key as keyof typeof fieldLabelMap]}: {msg}</li>
                             ))}
                         </ul>

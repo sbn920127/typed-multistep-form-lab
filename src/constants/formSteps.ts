@@ -19,7 +19,7 @@ export const formSteps: [StepConfig<BasicInfo>, StepConfig<ProfileInfo>, StepCon
     {
         id: 2,
         component: Step2ProfileInfo,
-        fields: ['fullName', 'birthday', 'gender'],
+        fields: ['fullName', 'birthday', 'gender', 'militaryService'],
     },
     {
         id: 3,

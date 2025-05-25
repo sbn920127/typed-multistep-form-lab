@@ -15,4 +15,7 @@ export type FieldConfig<T> = {
     options?: Option[];
     defaultValue?: T[keyof T];
     validators?: Validator<T>[];
+    visible?: (values: T) => boolean;
+    disabled?: (values: T) => boolean;
+    readonly?: (values: T) => boolean;
 };

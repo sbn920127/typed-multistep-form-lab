@@ -1,6 +1,6 @@
 import { FormSelect } from "./index.tsx";
 import type { FieldProps } from "../../types/components.ts";
-import type { Option } from "../../types/form.ts";
+import type { Option } from "../../types/fields.ts";
 
 type MockForm = {
     color: string;

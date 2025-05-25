@@ -1,33 +1,52 @@
-import { FieldConfig } from "../../types/form.ts";
+import { FieldConfig } from "../../types/fields.ts";
 import { FormInput } from "../FormInput";
 import { FormSelect } from "../FormSelect";
 import { FormCheckbox } from "../FormCheckbox";
 import { FormRadioGroup } from "../FormRadioGroup";
 
-type Props<T> = {
-    field: FieldConfig<T>;
-    value: T[keyof T];
+type Props<T, K extends keyof T> = {
+    field: FieldConfig<T> & { key: K };
+    value: T[K];
     error?: string;
-    onChange: (key: keyof T, value: T[keyof T]) => void;
+    onChange: (key: K, value: T[K]) => void;
+    values: T;
 };
 
-export function FieldRenderer<T>({field, value, error, onChange}: Props<T>) {
-    switch (field.component) {
+export function FieldRenderer<T, K extends keyof T>({field, value, error, onChange, values}: Props<T, K>) {
+    const {
+        key,
+        label,
+        component,
+        type,
+        options,
+        visible,
+        disabled,
+        readonly,
+    } = field;
+
+
+    if (visible && !visible(values)) return null;
+
+    const isDisabled = disabled?.(values);
+    const isReadonly = readonly?.(values);
+
+
+    switch (component) {
         case 'input':
             return (
-                <FormInput name={field.key} label={field.label} type={field.type || 'text'} value={value as string} error={error} onChange={onChange} />
+                <FormInput name={key} label={label} type={type || 'text'} value={value} error={error} onChange={onChange} disabled={isDisabled} readOnly={isReadonly} />
             )
         case 'select':
             return (
-                <FormSelect name={field.key} label={field.label} value={value as string} error={error} onChange={onChange} options={field.options ?? []} />
+                <FormSelect name={key} label={label} value={value} error={error} onChange={onChange} options={options ?? []} disabled={isDisabled} readOnly={isReadonly} />
             )
         case 'checkbox':
             return (
-                <FormCheckbox name={field.key} label={field.label} value={value as string} error={error} onChange={onChange} />
+                <FormCheckbox name={key} label={label} value={value} error={error} onChange={onChange} disabled={isDisabled} readOnly={isReadonly} />
             )
         case 'radio':
             return (
-                <FormRadioGroup name={field.key} label={field.label} value={value as string} error={error} onChange={onChange} options={field.options ?? []} />
+                <FormRadioGroup name={key} label={label} value={value} error={error} onChange={onChange} options={options ?? []} disabled={isDisabled} readOnly={isReadonly} />
             )
         default:
             return null;

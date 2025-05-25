@@ -1,6 +1,7 @@
-import { FieldConfig, FormStepProps, Preferences } from "../../types/form.ts";
+import { FormStepProps, Preferences } from "../../types/form.ts";
 import { themeOptions } from "../../constants/themeOptions.ts";
 import { FieldRenderer } from "../FieldRenderer";
+import { FieldConfig } from "../../types/fields.ts";
 
 const fields: FieldConfig<Preferences>[] = [
     {
@@ -27,6 +28,7 @@ export const Step3Preferences = ({values, errors, onChange}: FormStepProps<Prefe
                                    value={values[field.key]}
                                    error={errors[field.key]}
                                    onChange={onChange}
+                                   values={values}
                     />
                 ))
             }
