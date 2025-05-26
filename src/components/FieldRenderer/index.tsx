@@ -19,13 +19,9 @@ export function FieldRenderer<T, K extends keyof T>({field, value, error, onChan
         component,
         type,
         options,
-        visible,
         disabled,
         readonly,
     } = field;
-
-
-    if (visible && !visible(values)) return null;
 
     const isDisabled = disabled?.(values);
     const isReadonly = readonly?.(values);

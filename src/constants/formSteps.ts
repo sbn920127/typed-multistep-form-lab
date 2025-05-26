@@ -6,7 +6,6 @@ import { Step3Preferences } from "../components/Step3Preferences";
 
 type StepConfig<T> = {
     id: number;
-    fields: (keyof T)[];
     component: React.FC<FormStepProps<T>>;
 }
 
@@ -14,16 +13,13 @@ export const formSteps: [StepConfig<BasicInfo>, StepConfig<ProfileInfo>, StepCon
     {
         id: 1,
         component: Step1BasicInfo,
-        fields: ['email', 'password', 'confirmPassword'],
     },
     {
         id: 2,
         component: Step2ProfileInfo,
-        fields: ['fullName', 'birthday', 'gender', 'militaryService'],
     },
     {
         id: 3,
         component: Step3Preferences,
-        fields: ['newsletter', 'theme'],
     }
-]
+] as const;

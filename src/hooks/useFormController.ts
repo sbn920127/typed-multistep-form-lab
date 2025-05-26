@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FormErrors, FormValues } from "../types/form.ts";
+import type { FormErrors, FormValues, Step } from "../types/form.ts";
 import { formSteps } from "../constants/formSteps.ts";
 import { pick } from "../utils/pick.ts";
 import { validate } from "../validation";
@@ -7,11 +7,11 @@ import { toSnakeCaseKeys } from "../utils/toSnakeCareKeys.ts";
 import type { ToSnakeCaseKeys } from "../utils/typeHelpers.ts";
 import { submitForm } from "../api/submitForm.ts";
 import { mapApiFieldErrors } from "../utils/mapFieldErrors.ts";
-import { schemaMap, formDefaultValues } from "../constants/formMetadata.ts";
+import { schemaMap, formDefaultValues, allFields } from "../constants/formMetadata.ts";
 
 
 export const useFormController = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState<Step>(1);
     const [formData, setFormData] = useState<FormValues>(formDefaultValues);
     const [errors, setErrors] = useState<FormErrors<FormValues>>({});
 
@@ -23,7 +23,8 @@ export const useFormController = () => {
     const currentStepConfig = formSteps.find(s => s.id === step)!;
 
     const handleNext = () => {
-        const stepKeys = currentStepConfig.fields.map(f => f) as (keyof FormValues)[];
+        const stepFields = allFields[step];
+        const stepKeys = stepFields.map(f => f.key) as (keyof FormValues)[];
         const currentSchema = schemaMap[step];
         const stepValues = pick(formData, stepKeys);
         const stepErrors = validate(stepValues, currentSchema);

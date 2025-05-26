@@ -1,20 +1,16 @@
 import { basicInfoFields, preferencesFields, profileFields } from "./formFieldConfigs.ts";
-import { BasicInfo, FormValues, Preferences, ProfileInfo } from "../types/form.ts";
+import { FormValues } from "../types/form.ts";
 import { Step } from "../types/form.ts";
 import { buildSchemaFromFields } from "../utils/buildSchemaFromFields.ts";
 import { buildFormDefaults } from "../utils/buildFormDefaults.ts";
-import { FieldConfig } from "../types/fields.ts";
 import { ValidationSchema } from "../validation";
+import { FieldConfig } from "../types/fields.ts";
 
-export const allFields = {
+export const allFields: Record<Step, FieldConfig<any>[]> = {
     1: basicInfoFields,
     2: profileFields,
     3: preferencesFields,
-} satisfies {
-    1: FieldConfig<BasicInfo>[];
-    2: FieldConfig<ProfileInfo>[];
-    3: FieldConfig<Preferences>[];
-}
+};
 
 export const formDefaultValues: FormValues = Object.assign(
     {},
