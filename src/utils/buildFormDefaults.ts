@@ -1,11 +1,10 @@
-import { FieldConfig } from "../types/form.ts";
+import { FieldConfig } from "../types/fields.ts";
 
-export const buildFormDefaults = <T>(fields: FieldConfig<T>[]): Partial<T> => {
-    const result = {} as Partial<T>;
-    fields.forEach((f) => {
-        result[f.key] = f.defaultValue ?? '';
-    })
-    return result;
+export const buildFormDefaults = <T>(fields: FieldConfig<T, keyof T>[]): Partial<T> => {
+    return fields.reduce((acc, field) => {
+        acc[field.key] = field.defaultValue;
+        return acc;
+    }, {} as Partial<T>);
 }
 
 

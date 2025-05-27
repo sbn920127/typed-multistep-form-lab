@@ -7,13 +7,13 @@ export type Option = {
 
 export type FieldComponentType = "input" | "select" | "checkbox" | "radio";
 
-export type FieldConfig<T> = {
-    key: keyof T;
+export type FieldConfig<T, K extends keyof T = keyof T> = {
+    key: K;
     label: string;
     component: FieldComponentType;
     type?: string;
     options?: Option[];
-    defaultValue?: T[keyof T];
+    defaultValue?: T[K];
     validators?: Validator<T>[];
     visible?: (values: T) => boolean;
     disabled?: (values: T) => boolean;
