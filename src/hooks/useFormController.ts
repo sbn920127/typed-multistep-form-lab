@@ -7,7 +7,7 @@ import { toSnakeCaseKeys } from "../utils/toSnakeCareKeys.ts";
 import type { ToSnakeCaseKeys } from "../utils/typeHelpers.ts";
 import { submitForm } from "../api/submitForm.ts";
 import { mapApiFieldErrors } from "../utils/mapFieldErrors.ts";
-import { schemaMap, formDefaultValues, allFields } from "../constants/formMetadata.ts";
+import { schemaMap, formDefaultValues, allFields } from "../constants/metadata.ts";
 
 
 export const useFormController = () => {
